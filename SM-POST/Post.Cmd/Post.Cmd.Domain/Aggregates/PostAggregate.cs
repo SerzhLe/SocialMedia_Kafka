@@ -8,6 +8,7 @@ namespace Post.Cmd.Domain.Aggregates
         private string _authorName;
 
         //Tuple: 1) comment; 2) username
+        //Tuple as a class - values are immutable
         private readonly Dictionary<Guid, Tuple<string, string>> _comments = new();
 
         public bool IsActive { get; private set; }
@@ -18,6 +19,7 @@ namespace Post.Cmd.Domain.Aggregates
 
         public PostAggregate(Guid id, string authorName, string message)
         {
+            //we should always raise create event in constructor
             RaiseNewEvent(new PostCreatedEvent()
             {
                 Id = id,
