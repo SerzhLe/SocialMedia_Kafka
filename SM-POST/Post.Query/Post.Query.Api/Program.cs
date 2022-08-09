@@ -13,6 +13,12 @@ builder.Services.AddDbContext<DataContext>(configureDbContext);
 
 builder.Services.AddSingleton(new DataContextFactory(configureDbContext));
 
+//create db and tables from code
+
+var dataContext = builder.Services.BuildServiceProvider()!.GetRequiredService<DataContext>();
+dataContext.Database.EnsureCreated();
+
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
