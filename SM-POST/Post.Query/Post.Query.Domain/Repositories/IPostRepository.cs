@@ -10,7 +10,7 @@ namespace Post.Query.Domain.Repositories
 
         Task DeleteAsync(Guid postId);
 
-        Task<PostEntity> GetByIdAsync(Guid postId);
+        Task<PostEntity>? GetByIdAsync(Guid postId);
 
         Task<List<PostEntity>> ListAllAsync();
 
