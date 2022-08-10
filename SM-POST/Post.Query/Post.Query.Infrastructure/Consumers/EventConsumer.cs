@@ -29,6 +29,7 @@ namespace Post.Query.Infrastructure.Consumers
 
                 while (true)
                 {
+                    //block thread - continue when new result is available
                     var consumeResult = consumer.Consume();
 
                     if (consumeResult?.Message == null) continue;

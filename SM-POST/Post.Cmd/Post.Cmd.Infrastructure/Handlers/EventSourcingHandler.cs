@@ -28,6 +28,7 @@ namespace Post.Cmd.Infrastructure.Handlers
             //restore our post based on events
             aggregate.ReplayEvents(events);
 
+            //aggregate version = event max version
             aggregate.Version = events.Select(e => e.Version).Max();
 
             return aggregate;

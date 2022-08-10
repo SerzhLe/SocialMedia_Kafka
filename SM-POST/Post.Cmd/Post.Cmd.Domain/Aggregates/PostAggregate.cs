@@ -5,6 +5,10 @@ namespace Post.Cmd.Domain.Aggregates
 {
     public class PostAggregate : AggregateRoot
     {
+        //all these fields are served for business logic - we store data
+        //as events! not as aggregates! SO author is necessary to verify that only this author can delete post
+        //we do not have here message field because it is not needed for validations
+
         private string _authorName;
 
         //Tuple: 1) comment; 2) username
@@ -29,6 +33,7 @@ namespace Post.Cmd.Domain.Aggregates
             });
         }
 
+        //used to change the aggregate state
         public void Apply(PostCreatedEvent @event)
         {
             IsActive = true;

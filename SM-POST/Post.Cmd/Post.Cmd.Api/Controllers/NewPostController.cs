@@ -34,6 +34,7 @@ namespace Post.Cmd.Api.Controllers
 
                 return StatusCode(StatusCodes.Status201Created, new NewPostResponse
                 {
+                    Id = id,
                     Message = "New post creation request completed successfully."
                 });
             }

@@ -18,6 +18,7 @@ namespace Post.Query.Infrastructure.Consumers
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
+            //invoked after starting the app
             _logger.LogInformation("Event consumer service running");
 
             using (IServiceScope scope = _serviceProvider.CreateScope())

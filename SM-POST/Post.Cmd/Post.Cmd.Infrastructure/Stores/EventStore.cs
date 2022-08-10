@@ -35,7 +35,7 @@ namespace Post.Cmd.Infrastructure.Stores
             var eventStream = await _eventStoreRepository.FindAllByAggregateIdAsync(aggregateId);
 
             //optimistic concurrency control check
-            if (expectedVersion == -1 || eventStream.Last().Version != expectedVersion)
+            if (expectedVersion != -1 && eventStream[^1].Version != expectedVersion)
             {
                 throw new ConcurrencyException();
             }

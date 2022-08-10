@@ -9,7 +9,7 @@ namespace Post.Query.Infrastructure.Converters
     {
         public override bool CanConvert(Type typeToConvert)
         {
-            return typeToConvert.IsAssignableTo(typeof(BaseEvent));
+            return typeToConvert.IsAssignableFrom(typeof(BaseEvent));
         }
 
         public override BaseEvent? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
