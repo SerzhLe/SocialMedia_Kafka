@@ -7,9 +7,7 @@ using Post.Common.DTOs;
 
 namespace Post.Cmd.Api.Controllers
 {
-    [ApiController]
-    [Route("api/v1/[controller]")]
-    public class NewPostController : ControllerBase
+    public class NewPostController : BaseApiCommandController
     {
         private readonly ILogger<NewPostController> _logger;
         private readonly ICommandDispatcher _commandDispatcher;
@@ -27,7 +25,6 @@ namespace Post.Cmd.Api.Controllers
 
             try
             {
-
                 command.Id = id;
 
                 await _commandDispatcher.SendAsync(command);
