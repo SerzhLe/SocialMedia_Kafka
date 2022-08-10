@@ -33,7 +33,7 @@ builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
 builder.Services.AddScoped<IQueryHandler, QueryHandler>();
 
-var handler = builder.Services.BuildServiceProvider().GetRequiredService<QueryHandler>();
+var handler = builder.Services.BuildServiceProvider().GetRequiredService<IQueryHandler>();
 
 var dispatcher = new QueryDispatcher<PostEntity>();
 
