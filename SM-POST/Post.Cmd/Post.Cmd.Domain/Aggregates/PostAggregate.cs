@@ -24,6 +24,17 @@ namespace Post.Cmd.Domain.Aggregates
         public PostAggregate(Guid id, string authorName, string message)
         {
             //we should always raise create event in constructor
+            CreatePost(id, authorName, message);
+        }
+
+        //used to change the aggregate state
+        private void CreatePost(Guid id, string authorName, string message)
+        {
+            if (string.IsNullOrWhiteSpace(authorName) || string.IsNullOrWhiteSpace(message))
+            {
+                throw new InvalidOperationException(@$"Author and\or message is in invalid state.");
+            }
+
             RaiseNewEvent(new PostCreatedEvent()
             {
                 Id = id,
@@ -32,8 +43,6 @@ namespace Post.Cmd.Domain.Aggregates
                 DatePosted = DateTime.Now
             });
         }
-
-        //used to change the aggregate state
         public void Apply(PostCreatedEvent @event)
         {
             IsActive = true;

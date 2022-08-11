@@ -28,7 +28,10 @@ namespace Post.Query.Api.Controllers
 
                 if (posts == null || !posts.Any())
                 {
-                    return NoContent();
+                    return NotFound(new BaseResponse()
+                    {
+                        Message = "Posts not found."
+                    });
                 }
 
                 return Ok(new PostLookupResponse()

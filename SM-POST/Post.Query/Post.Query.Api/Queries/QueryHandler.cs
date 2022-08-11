@@ -24,7 +24,14 @@ namespace Post.Query.Api.Queries
 
         public async Task<List<PostEntity>> HandleAsync(FindPostByIdQuery query)
         {
+#pragma warning disable
             var post = await _postRepository.GetByIdAsync(query.Id);
+#pragma warning enable
+
+            if (post == null)
+            {
+                return new List<PostEntity>();
+            }
 
             return new List<PostEntity>() { post };
         }
